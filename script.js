@@ -74,11 +74,12 @@ function generatePassword () {
 
   console.log(eligibleChars);
 
-  for (var i = 0; i <= desiredLength; i++) {
+  for (var i = 0; i < desiredLength; i++) {
     var randomNumber = Math.floor(Math.random() * eligibleChars.length);
-    password = ;
+    password += eligibleChars.substring(randomNumber, randomNumber +1);
   }
 
+  console.log(password);
 
 
 
@@ -86,6 +87,7 @@ function generatePassword () {
 
 
 
+  return password
 } 
 
 
