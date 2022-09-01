@@ -7,6 +7,7 @@ Provide a short description explaining the what, why, and how of your project. U
 I came across the website that sought to help users generate a password. However, the javascript was not yet built out and there was no functionality on the page. I enhanced the javacript by creating functionality that asks the user for certain password parameters, then displays the generated password to on the webpage.
 
 The parameters that influence the generated password are:
+
     - Character length
     - Character types (uppercase, lowercase, numeric, or special characters)
 
@@ -19,6 +20,7 @@ During this project I learned the importance of pseudocding in order to make sur
 This webpage can be accessed by following this link: https://nolacoder.github.io/03-Module-Challenge/
 
 Although no functionality is visible in the console, some important validation can be seen by the following actions:
+
     - Attempting to cancel out of the first prompt will return you to the starting position
     - Entering an invalid character length with allow you to try again at that step
     - Choosing cancel (effectively 'No') on the character type confirm boxes will inform you that at least one character type is required and let you try again at that step
