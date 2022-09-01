@@ -25,17 +25,21 @@ function generatePassword () {
   var isNumeric;
   var isSpecial;
 
-  desiredLength = prompt("How long should the password be?");
-
-  // If statement to verify the number is valid. If invalid, restart the generatepassword() function
-  if ((desiredLength < 8) || (desiredLength > 128)) {
-    alert("Password must be at least 8 characters and no more than 128 characters");
-    generatePassword();
-    return;
-  } // If number is valid, start the next function
-  else {
+  // A separate nested function for password length so user starts from here upon password length validation fail
+  function passwordLengthValidation () {
+    desiredLength = prompt("How many characters should the password be?");
+    // If statement to verify the number is valid. If invalid, restart the generatepassword() function
+    if ((desiredLength < 8) || (desiredLength > 128)) {
+      alert("Password must be at least 8 characters and no more than 128 characters");
+      passwordLengthValidation();
+      return;
+    } // If number is valid, start the next function
+    else {
     specialCharactersValidation();
+    }
   }
+
+  passwordLengthValidation();
 
   // A separate nested function for special characters so if user says no to all prompts, they will restart at this function instead of at the beginning of the generatePassword() function
   function specialCharactersValidation () {
