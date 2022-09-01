@@ -1,4 +1,4 @@
-# 03-Module-Challenge
+# Password Generator
 
 ## Description
 
@@ -24,5 +24,5 @@ Although no functionality is visible in the console, some important validation c
     - Choosing cancel (effectively 'No') on the character type confirm boxes will inform you that at least one character type is required and let you try again at that step
     - You can generate multiple passwords without refreshing the page because the variable storing the password is reset on each run
 
-[Screenshot of webpage with generated password](./assets/images/Generated%20Password.png)
+![Screenshot of webpage with generated password](./assets/images/Generated%20Password.png)
 
