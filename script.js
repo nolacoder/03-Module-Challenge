@@ -6,18 +6,19 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  // WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
   passwordText.value = password;
 
 }
 
-// GIVEN I need a new, secure password
-// WHEN I click the button to generate a password
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+// This function generates the password
 function generatePassword () {
+  // Setting password.value to an empty string to remove any stored passwords
+  password.value = "";
+
+  // These variables are local to gerneatePassword()
   var desiredLength;
   var isLowerCase;
   var isUpperCase;
@@ -26,14 +27,17 @@ function generatePassword () {
 
   desiredLength = prompt("How long should the password be?");
 
+  // If statement to verify the number is valid. If invalid, restart the generatepassword() function
   if ((desiredLength < 8) || (desiredLength > 128)) {
     alert("Password must be at least 8 characters and no more than 128 characters");
     generatePassword();
     return;
-  } else {
+  } // If number is valid, start the next function
+  else {
     specialCharactersValidation();
   }
 
+  // A separate nested function for special characters so if user says no to all prompts, they will restart at this function instead of at the beginning of the generatePassword() function
   function specialCharactersValidation () {
     isLowerCase = confirm("Do you want to include lowercase characters?");
     isUpperCase = confirm("Do you want to include uppercase characters?");
@@ -45,17 +49,21 @@ function generatePassword () {
       specialCharactersValidation();
       return;
     } else {
+      // This allows the values to be usable by the parent function
       return isLowerCase, isUpperCase, isNumeric, isSpecial;
     }
   }
 
+  // Setting the characters parameters as separate strings to be used as building blocks later
   var lowerCaseChars = "abcdefghijklmnopqrstuvwxyz";
   var upperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numericChars = "0123456789";
   var specialChars = "!@#$%^&*()";
 
+  // Created as an empty string so the previous strings can be concatenated into it
   var eligibleChars = "";
 
+  // 4 if statements serving as building blocks. Each is evaluated independently
   if (isLowerCase) {
     eligibleChars = eligibleChars.concat(lowerCaseChars);
   } else {};
@@ -72,35 +80,13 @@ function generatePassword () {
     eligibleChars = eligibleChars.concat(specialChars);
   } else {};
 
-  console.log(eligibleChars);
-
+  // For loop to generate password based on the concatenated string
   for (var i = 0; i < desiredLength; i++) {
     var randomNumber = Math.floor(Math.random() * eligibleChars.length);
-    password += eligibleChars.substring(randomNumber, randomNumber +1);
+    // Substring sets the position of the concatenated string based on the result of the randomizer above. Takes that position in the string and stores it in password.value, building the password one character at a time. Continues until the desired password length is reached
+    password.value += eligibleChars.substring(randomNumber, randomNumber +1);
   }
 
-  console.log(password);
-
-
-
-
-
-
-
-  return password
-} 
-
-
-
-// THEN I am presented with a series of prompts for password criteria
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-// WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-
+  // Brings the resulting password.value to the global level.
+  return password.value
+}
