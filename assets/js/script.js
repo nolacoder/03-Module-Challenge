@@ -28,8 +28,11 @@ function generatePassword () {
   // A separate nested function for password length so user starts from here upon password length validation fail
   function passwordLengthValidation () {
     desiredLength = prompt("How many characters should the password be?");
-    // If statement to verify the number is valid. If invalid, restart the generatepassword() function
-    if ((desiredLength < 8) || (desiredLength > 128)) {
+    if (desiredLength === null) {
+      return; 
+    }
+    // If statement to verify the number is valid. If invalid, restart the passwordLengthValidation() function
+    else if ((desiredLength < 8) || (desiredLength > 128)) {
       alert("Password must be at least 8 characters and no more than 128 characters");
       passwordLengthValidation();
       return;
